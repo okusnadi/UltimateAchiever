@@ -1,26 +1,24 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import {
 	AppRegistry,
 	StyleSheet,
 	Text,
 	View
-} from 'react-native';
+} from 'react-native'
 
+
+import { Header } from './src/components/common'
 
 
 export default class UltimateAchiever extends Component {
 	render() {
 		return (
-			<View style={styles.container}>
-				<Text style={styles.welcome}>
+			<View >
+				<Header headerText={'SupeerTrooper'}/>
+				<Text >
 					Welcome to React Native!
 				</Text>
+
 				<Text style={styles.instructions}>
 					To get started, edit index.android.js
 				</Text>
@@ -29,9 +27,9 @@ export default class UltimateAchiever extends Component {
 					Shake or press menu button for dev menu Test Test teststets sdgsf
 				</Text>
 				<Text style={styles.container}>ff</Text>
-			</View>
 
-		);
+			</View>
+		)
 	}
 }
 
@@ -41,7 +39,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		backgroundColor: '#F5FCFF',
-		textAlign: 'center'
 	},
 	welcome: {
 		fontSize: 20,
@@ -53,6 +50,6 @@ const styles = StyleSheet.create({
 		color: '#333333',
 		marginBottom: 5,
 	},
-});
+})
 
-AppRegistry.registerComponent('UltimateAchiever', () => UltimateAchiever);
+AppRegistry.registerComponent('UltimateAchiever', () => UltimateAchiever)
