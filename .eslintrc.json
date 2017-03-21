@@ -22,10 +22,10 @@
 
     ],
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
+//        "indent": [
+//            "error",
+//            "tab"
+//        ],
 //        "linebreak-style": [
 //            "error",
 //            "windows"
@@ -34,10 +34,10 @@
             "error",
             "single"
         ],
-        "semi": [
-            "error",
-            "never"
-        ],
+//        "semi": [
+//            "error",
+//            "never"
+//        ],
         "react-native/no-unused-styles": 2,
         "react-native/split-platform-components": 2,
         "react-native/no-inline-styles": 2,

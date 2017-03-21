@@ -8,26 +8,14 @@ import {
 
 
 import { Header } from './src/components/common'
+import Pomodoro from './src/components/Pomodoro/Pomodoro'
 
 
 export default class UltimateAchiever extends Component {
 	render() {
 		return (
 			<View >
-				<Header headerText={'SupeerTrooper'}/>
-				<Text >
-					Welcome to React Native!
-				</Text>
-
-				<Text style={styles.instructions}>
-					To get started, edit index.android.js
-				</Text>
-				<Text style={styles.instructions}>
-					Double tap R on your keyboard to reload,{'\n'}
-					Shake or press menu button for dev menu Test Test teststets sdgsf
-				</Text>
-				<Text style={styles.container}>ff</Text>
-
+				<Pomodoro/>
 			</View>
 		)
 	}
