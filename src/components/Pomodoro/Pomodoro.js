@@ -17,18 +17,11 @@ export default class Pomodoro extends Component {
 		return (
 			<View >
 				<Header headerText={'SuperTrooper'}/>
-				<Countdown time={5}/>
+				<Countdown time={10}/>
 			</View>
 		)
 	}
 
-	toggleTime() {
-		let time  = this.state.time
-	}
-
-	startTimer(timeSession) {
-
-	}
 }
 
 

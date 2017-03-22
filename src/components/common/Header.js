@@ -37,4 +37,8 @@ const styles = StyleSheet.create({
 	},
 })
 
+Header.propTypes ={
+	headerText: React.PropTypes.string
+}
+
 export { Header }
