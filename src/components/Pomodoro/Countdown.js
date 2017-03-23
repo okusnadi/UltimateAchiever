@@ -2,16 +2,17 @@ import React, { Component } from 'react'
 import {Text, View} from 'react-native'
 
 class Countdown extends Component {
+	// private interval: any
 	constructor(props) {
 		super(props)
-		this.state = {time: this.props.time}
+		this.state = {time: this.props.time, done: ''}
 
 
 
 
 
-		setInterval(() => {
-			this.setState({ time: this.startCount(this.state.time) })
+		this.interval = setInterval(() => {
+			this.startCount(this.state.time)
 		}, 1000);
 	}
 	render() {
@@ -19,15 +20,19 @@ class Countdown extends Component {
 			<View>
 				<Text>{this.state.time}</Text>
 				<Text>{this.displayTime(this.state.time)}</Text>
+				<Text>{this.state.done}</Text>
 			</View>
 
         )
     }
 
     startCount(secs) {
-		if (secs>0) {
-			return secs - 1
-		} else return secs
+		if (secs>1) {
+			this.setState({ time: secs - 1 })
+		} else {
+			clearInterval(this.interval)
+			this.setState({ done: 'Done!' })
+		}
 	}
 // todo stop timer
 	displayTime(secs) {
