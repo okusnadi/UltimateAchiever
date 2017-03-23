@@ -6,8 +6,9 @@ import {
 } from 'react-native'
 
 
-import { Header } from '../common'
+
 import Countdown from './Countdown'
+import Header from '../common/Header'
 
 
 export default class Pomodoro extends Component {
@@ -16,7 +17,7 @@ export default class Pomodoro extends Component {
 	render() {
 		return (
 			<View >
-				<Header headerText={'SuperTrooper'}/>
+				<Header headerText={'Pomodoro'}/>
 				<Countdown time={10}/>
 			</View>
 		)

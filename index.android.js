@@ -6,8 +6,6 @@ import {
 	View
 } from 'react-native'
 
-
-import { Header } from './src/components/common'
 import Pomodoro from './src/components/Pomodoro/Pomodoro'
 
 

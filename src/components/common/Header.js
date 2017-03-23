@@ -33,4 +33,4 @@ Header.propTypes ={
 	headerText: React.PropTypes.string
 }
 
-export { Header }
+export default Header

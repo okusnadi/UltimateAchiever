@@ -1,40 +1,50 @@
 import React, { Component } from 'react'
 import {Text, View} from 'react-native'
+import MyButton from '../common/MyButton'
 
 class Countdown extends Component {
 	// private interval: any
 	constructor(props) {
 		super(props)
-		this.state = {time: this.props.time, done: ''}
+		this.state = {time: this.props.time, done: true}
 
-
-
-
-
-		this.interval = setInterval(() => {
-			this.startCount(this.state.time)
-		}, 1000);
 	}
 	render() {
+		if (this.state.done) {
+			this.startBtn = <MyButton onPress={this.startCount.bind(this)}>
+				New Session
+			</MyButton>
+		} else {
+			this.startBtn = null
+		}
 		return (
 			<View>
 				<Text>{this.state.time}</Text>
 				<Text>{this.displayTime(this.state.time)}</Text>
 				<Text>{this.state.done}</Text>
+				{this.startBtn}
+
 			</View>
 
         )
     }
+    startCount() {
+		this.setState({ time: this.props.time, done: false})
 
-    startCount(secs) {
-		if (secs>1) {
+		this.interval = setInterval(() => {
+			this.count(this.state.time)
+		}, 1000);
+
+	}
+
+    count(secs) {
+		if (secs>0) {
 			this.setState({ time: secs - 1 })
 		} else {
 			clearInterval(this.interval)
-			this.setState({ done: 'Done!' })
+			this.setState({ done: true })
 		}
 	}
-// todo stop timer
 	displayTime(secs) {
 		// let h = Math.floor(secs / 3600)
 		let m = Math.floor(secs / 60)
