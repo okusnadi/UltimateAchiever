@@ -4,16 +4,12 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React, { Component } from "react";
+import { AppRegistry, StyleSheet, Text, View } from "react-native";
 
 export default class UltimateAchiever extends Component {
   render() {
+    // foo(5)
     return (
       <View style={styles.container}>
         <Text style={styles.welcome}>
@@ -23,7 +19,7 @@ export default class UltimateAchiever extends Component {
           To get started, edit index.ios.js
         </Text>
         <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
+          Press Cmd+R to reload,{"\n"}
           Cmd+D or shake for dev menu
         </Text>
       </View>
@@ -31,23 +27,30 @@ export default class UltimateAchiever extends Component {
   }
 }
 
+// function foo(x: ?number): string {
+// 	if (x) {
+// 		return x;
+// 	}
+// 	return "default string";
+// }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    textAlign: "center",
+    margin: 10
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
 });
 
-AppRegistry.registerComponent('UltimateAchiever', () => UltimateAchiever);
+AppRegistry.registerComponent("UltimateAchiever", () => UltimateAchiever);
