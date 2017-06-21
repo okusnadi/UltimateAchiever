@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from "react";
 import { Button, Text, View } from "react-native";
-import { observer, inject } from "mobx-react";
+// import {observer, inject} from 'mobx-react';
 
-@inject("pomoStore")
-@observer
+// @inject("pomoStore")
+// @observer
 export default class PomoScreen extends Component {
   static navigationOptions = {
     title: "Sup"
@@ -22,7 +22,7 @@ export default class PomoScreen extends Component {
         {/*<Countdown time={10}/>*/}
         <Text>Chat with {params.user}</Text>
 
-        <Text>Count: {this.props.pomoStore.count}</Text>
+
       </View>
     );
   }

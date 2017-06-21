@@ -2,7 +2,7 @@
 
 import { observable, action, computed  } from 'mobx';
 
-class Store {
+export default class PomoStore {
 	@observable count = 0;
 	@action increment() {
 		this.count += 1;
@@ -40,4 +40,4 @@ class Store {
 	// <Text>FullName: {this.props.pomoStore.fullName}</Text>
 }
 
-export default new Store();
+// export default new Store();
