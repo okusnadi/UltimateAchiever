@@ -1,12 +1,14 @@
 // @flow
 
-import { observable, action, computed  } from 'mobx';
+import {observable, action, computed} from 'mobx';
 
 export default class PomoStore {
 	@observable count = 0;
+
 	@action increment() {
 		this.count += 1;
 	}
+
 	@action decrement() {
 		this.count -= 1;
 	}
@@ -34,6 +36,7 @@ export default class PomoStore {
 	@computed get fullName(): string {
 		return `${this.firstName} ${this.lastName}`;
 	}
+
 	// An interesting function is the fullName function. It is basically computed out of firstName and lastName observable fields.
 	// MobX strongly encourages to keep the state information as minimal as possible and derive other state information
 	// with @computed get decorators that are pure functions of other observable fields.
