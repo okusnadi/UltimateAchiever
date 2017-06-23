@@ -8,7 +8,8 @@
     "flow start": "flow start",
     "flow stop": "flow stop",
     "flow status": "flow status",
-    "flow coverage": "flow coverage"
+    "flow coverage": "flow coverage",
+    "storybook": "storybook start -p 7007"
   },
   "dependencies": {
     "eslint": "3.19.0",
@@ -34,7 +35,9 @@
     "eslint-plugin-jsx-a11y": "5.0.1",
     "jest": "20.0.4",
     "prettier": "^1.4.4",
-    "react-test-renderer": "16.0.0-alpha.12"
+    "react-test-renderer": "16.0.0-alpha.12",
+    "@storybook/react-native": "^3.1.5",
+    "react-dom": "^15.5.4"
   },
   "jest": {
     "preset": "react-native"

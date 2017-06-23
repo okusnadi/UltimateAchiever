@@ -7,11 +7,11 @@ import {observer, inject} from "mobx-react";
 @observer
 export default class HomeScreen extends Component {
 	static navigationOptions = {
-		title: "Welcome"
+		title: 'Welcome to UltimateAchiever',
 	};
 
 	render() {
-		const {navigate} = this.props.navigation;
+		const {navigate} = this.props.navigation
 		return (
 			<View>
 				<Text>Hello, Chat App!</Text>

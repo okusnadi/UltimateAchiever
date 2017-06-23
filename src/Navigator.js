@@ -2,8 +2,8 @@
 
 import {StackNavigator} from 'react-navigation';
 
-import PomoScreen from './containers/PomoScreen'
-import HomeScreen from './containers/HomeScreen'
+import PomoScreen from './containers/Pomodoro/PomoScreen'
+import HomeScreen from './containers/Home/HomeScreen'
 
 const stackNavigatorConfig = {
 	initialRouteName: 'Home',
