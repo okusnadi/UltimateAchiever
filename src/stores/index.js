@@ -3,9 +3,11 @@
 // @flow
 
 import PomoStore from './pomoStore';
+import ScheStore from './scheStore'
 
 export default {
 	pomoStore: new PomoStore(),
+	scheStore: new ScheStore(),
 	// place for other stores...
 };
 

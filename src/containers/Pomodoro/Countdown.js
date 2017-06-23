@@ -3,7 +3,6 @@ import {Text, View} from 'react-native'
 import {MyButton} from '../../components'
 
 class Countdown extends Component {
-	// private interval: any
 	constructor(props) {
 		super(props)
 		this.state = {time: this.props.time, done: true}
@@ -21,11 +20,8 @@ class Countdown extends Component {
 			<View>
 				<Text>{this.state.time}</Text>
 				<Text>{this.displayTime(this.state.time)}</Text>
-				<Text>{this.state.done}</Text>
 				{this.startBtn}
-
 			</View>
-
 		)
 	}
 
@@ -35,7 +31,6 @@ class Countdown extends Component {
 		this.interval = setInterval(() => {
 			this.count(this.state.time)
 		}, 1000);
-
 	}
 
 	count(secs) {
