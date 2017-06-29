@@ -20,9 +20,10 @@ export default class PomoStore {
 	}
 
 	@action count(secs) {
-		if (secs > 0) {
+		if (secs > 1) {
 			this.timeLeft--
 		} else {
+			this.timeLeft--
 			clearInterval(this.interval)
 			this.pomoStatus = 'stopped'
 		}

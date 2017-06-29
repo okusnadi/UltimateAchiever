@@ -26,7 +26,6 @@ export default class PomoScreen extends Component {
 				<Text>
 					{/*Chat with {params.user}*/}
 				</Text>
-				<Text>Hi</Text>
 			</View>
 		)
 	}
