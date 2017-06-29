@@ -24,7 +24,7 @@ export default class PomoScreen extends Component {
 				{/*<Header headerText={'Pomodoro'}/>*/}
 				<Countdown time={10} />
 				<Text>
-					Chat with {params.user}
+					{/*Chat with {params.user}*/}
 				</Text>
 				<Text>Hi</Text>
 			</View>

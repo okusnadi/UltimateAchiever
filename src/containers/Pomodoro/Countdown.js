@@ -1,7 +1,12 @@
+// @flow
+
 import React, {Component} from 'react'
 import {Text, View} from 'react-native'
 import {MyButton} from '../../components'
+import {observer, inject} from "mobx-react"
 
+@inject("pomoStore")
+@observer
 class Countdown extends Component {
 	constructor(props) {
 		super(props)
@@ -9,8 +14,8 @@ class Countdown extends Component {
 	}
 
 	render() {
-		if (this.state.done) {
-			this.startBtn = <MyButton onPress={this.startCount.bind(this)}>
+		if (this.props.pomoStore.pomoStatus == 'stopped') {
+			this.startBtn = <MyButton onPress={() => this.props.pomoStore.startCount()}>
 				New Session
 			</MyButton>
 		} else {
@@ -19,28 +24,21 @@ class Countdown extends Component {
 		return (
 			<View>
 				<Text>{this.state.time}</Text>
-				<Text>{this.displayTime(this.state.time)}</Text>
+				<Text>{this.displayTime(this.props.pomoStore.timeLeft)}</Text>
 				{this.startBtn}
+				<Text>
+					timeSession: {this.props.pomoStore.timeSession}
+				</Text>
+				<Text>
+					timeLeft: {this.displayTime(this.props.pomoStore.timeLeft)}
+				</Text>
+				<Text>
+					pomoStatus: {this.props.pomoStore.pomoStatus}
+				</Text>
 			</View>
 		)
 	}
 
-	startCount() {
-		this.setState({time: this.props.time, done: false})
-
-		this.interval = setInterval(() => {
-			this.count(this.state.time)
-		}, 1000);
-	}
-
-	count(secs) {
-		if (secs > 0) {
-			this.setState({time: secs - 1})
-		} else {
-			clearInterval(this.interval)
-			this.setState({done: true})
-		}
-	}
 
 	displayTime(secs) {
 		// let h = Math.floor(secs / 3600)

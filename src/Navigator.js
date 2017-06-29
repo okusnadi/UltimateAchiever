@@ -7,7 +7,7 @@ import HomeScreen from './containers/Home/HomeScreen'
 import ScheScreen from './containers/Scheduler/ScheScreen'
 
 const stackNavigatorConfig = {
-	initialRouteName: 'Sche',
+	initialRouteName: 'Pomo',
 };
 
 export default StackNavigator({

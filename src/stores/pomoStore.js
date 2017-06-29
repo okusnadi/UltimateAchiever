@@ -1,40 +1,55 @@
 // @flow
 
-import {observable, action, computed} from 'mobx';
+import {observable, action, computed} from 'mobx'
 
 export default class PomoStore {
-	@observable count = 0;
+	@observable timeSession = 10
+	@observable timeLeft = 0
+	@observable pomoStatus = 'stopped'
+	// started, paused, stopped, done
+	// let interval = 0
 
-	@action increment() {
-		this.count += 1;
+	@action	startCount() {
+		this.pomoStatus = 'started'
+		this.timeLeft = this.timeSession
+
+		this.interval = setInterval(() => {
+			this.count(this.timeLeft)
+		}, 1000)
+
 	}
 
-	@action decrement() {
-		this.count -= 1;
+	@action count(secs) {
+		if (secs > 0) {
+			this.timeLeft--
+		} else {
+			clearInterval(this.interval)
+			this.pomoStatus = 'stopped'
+		}
 	}
 
-	@observable firstName = "Sen";
-	@observable lastName = "Appleseed";
-	@observable email = "send@appleseed.com";
-	@observable phone = "1155667788";
+	@observable firstName = 'Sen'
+	@observable lastName = 'Appleseed'
+	@observable email = 'send@appleseed.com'
+	@observable phone = '1155667788'
 
-	@action data(data: Object) {
+	@action	data(data: Object) {
 		if (data.firstName) {
-			this.firstName = data.firstName;
+			this.firstName = data.firstName
 		}
 		if (data.lastName) {
-			this.lastName = data.lastName;
+			this.lastName = data.lastName
 		}
 		if (data.email) {
-			this.email = data.email;
+			this.email = data.email
 		}
 		if (data.phone) {
-			this.phone = data.phone;
+			this.phone = data.phone
 		}
 	}
 
 	@computed get fullName(): string {
-		return `${this.firstName} ${this.lastName}`;
+		return `${this.firstName} ${this.lastName}`
 	}
 
 	// An interesting function is the fullName function. It is basically computed out of firstName and lastName observable fields.
