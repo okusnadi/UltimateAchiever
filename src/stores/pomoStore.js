@@ -4,28 +4,67 @@ import {observable, action, computed} from 'mobx'
 
 export default class PomoStore {
 	@observable timeSession = 10
-	@observable timeLeft = 0
+	@observable timeSessionLeft = this.timeSession
 	@observable pomoStatus = 'stopped'
 	// started, paused, stopped, done
-	// let interval = 0
+	@observable pauseAllowed = true
+	@observable timePause = 5
+	@observable timePauseLeft = this.timePause
+	@observable timeBreak = 5
+	@observable timeBreakLeft = this.timeBreakLeft
+	@observable timeLBreak = 10
+	@observable sessionCount = 0
 
-	@action	startCount() {
-		this.pomoStatus = 'started'
-		this.timeLeft = this.timeSession
+	@action	changeStatus(command) {
+		switch (command) {
+			case 'start':
+				clearInterval(this.interval)
+				this.timePauseLeft = this.timePause
+				timeBreakLeft = this.timeBreakLeft
 
-		this.interval = setInterval(() => {
-			this.count(this.timeLeft)
-		}, 1000)
+				this.pomoStatus = 'started'
+				this.interval = setInterval(() => {
+					this.count(this.timeSessionLeft)
+				}, 1000)
+				break
+			case 'break':
+				clearInterval(this.interval)
+				this.pomoStatus = 'breaked'
+				this.interval = setInterval(() => {
+					this.count(this.timeBreakLeft)
+				}, 1000)
+				break
+			case 'void':
+				this.sessionCount--
+				break
+			case 'pause':
+				clearInterval(this.interval)
+				this.pomoStatus = 'paused'
+				this.interval = setInterval(() => {
+					this.count(this.timePauseLeft)
+				}, 1000)
+				break
+			case 'abort':
+				clearInterval(this.interval)
+				this.timeSessionLeft = this.timeSession
+				this.pomoStatus = 'stopped'
+				break
+		}
+
+		this.timeSessionLeft = this.timeSession
+
+
 
 	}
-
 	@action count(secs) {
 		if (secs > 1) {
-			this.timeLeft--
+			this.timeSessionLeft--
 		} else {
-			this.timeLeft--
+			this.timeSessionLeft--
 			clearInterval(this.interval)
 			this.pomoStatus = 'stopped'
+			this.sessionCount++
+			//long break if count is something divided by number of sessions streak! Which can be nullified after period of time
 		}
 	}
 

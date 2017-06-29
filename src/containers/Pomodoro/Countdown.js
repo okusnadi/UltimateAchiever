@@ -10,7 +10,7 @@ const Countdown = inject('pomoStore')(
 	observer(props => {
 		if (props.pomoStore.pomoStatus == 'stopped') {
 			startBtn = (
-				<MyButton onPress={() => props.pomoStore.startCount()}>
+				<MyButton onPress={() => props.pomoStore.changeStatus('start')}>
 					{strings.new_session}
 				</MyButton>
 			)
@@ -33,10 +33,13 @@ const Countdown = inject('pomoStore')(
 					timeSession: {props.pomoStore.timeSession}
 				</Text>
 				<Text>
-					timeLeft: {displayTime(props.pomoStore.timeLeft)}
+					timeLeft: {displayTime(props.pomoStore.timeSessionLeft)}
 				</Text>
 				<Text>
 					pomoStatus: {props.pomoStore.pomoStatus}
+				</Text>
+				<Text>
+					sessionCount: {props.pomoStore.sessionCount}
 				</Text>
 				{startBtn}
 			</View>
