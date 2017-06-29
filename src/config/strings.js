@@ -7,7 +7,7 @@ import LocalizedStrings from 'react-native-localization';
 
 export let strings = new LocalizedStrings({
 	en:{
-		hello_world: "Hello, World!"
+		new_session: "New Session"
 	},
 	uk: {
 		hello_world:"Привіт, Світ",

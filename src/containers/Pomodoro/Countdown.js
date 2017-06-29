@@ -4,13 +4,14 @@ import React, {Component} from 'react'
 import {Text, View} from 'react-native'
 import {MyButton} from '../../components'
 import {observer, inject} from 'mobx-react'
+import {strings} from '../../config/strings'
 
 const Countdown = inject('pomoStore')(
 	observer(props => {
 		if (props.pomoStore.pomoStatus == 'stopped') {
 			startBtn = (
 				<MyButton onPress={() => props.pomoStore.startCount()}>
-					New Session
+					{strings.new_session}
 				</MyButton>
 			)
 		} else {
