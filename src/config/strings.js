@@ -3,14 +3,19 @@
 
 // @flow
 
-import LocalizedStrings from 'react-native-localization';
+import LocalizedStrings from 'react-native-localization'
 
 export let strings = new LocalizedStrings({
-	en:{
-		new_session: "New Session"
+	en: {
+		//pomoScreen
+		new_session: 'New Session',
+		pause_session: 'Pause',
+		abort_session: 'Abort',
+		resume_session: 'Resume',
+		start_break: 'Start break',
+		skip_break: 'Skip break',
 	},
 	uk: {
-		hello_world:"Привіт, Світ",
+		hello_world: 'Привіт, Світ'
 	}
-});
-
+})

@@ -11,7 +11,7 @@ export default class PomoStore {
 	@observable timePause = 5
 	@observable timePauseLeft = this.timePause
 	@observable timeBreak = 5
-	@observable timeBreakLeft = this.timeBreakLeft
+	@observable timeBreakLeft = this.timeBreak
 	@observable timeLBreak = 10
 	@observable sessionCount = 0
 
@@ -50,21 +50,39 @@ export default class PomoStore {
 				this.pomoStatus = 'stopped'
 				break
 		}
-
-		this.timeSessionLeft = this.timeSession
-
-
-
 	}
+
 	@action count(secs) {
 		if (secs > 1) {
-			this.timeSessionLeft--
+			if (this.pomoStatus == 'paused') {
+				this.timePauseLeft--
+			} else if (this.pomoStatus == 'breaked') {
+				this.timeBreakLeft--
+			} else {
+				this.timeSessionLeft--
+			}
 		} else {
-			this.timeSessionLeft--
+			if (this.pomoStatus == 'paused') {
+				this.timePauseLeft--
+				this.pomoStatus = 'stopped'
+				this.timePauseLeft = this.timePause
+				this.timeSessionLeft = this.timeSession
+			} else if (this.pomoStatus == 'breaked') {
+				this.timeBreakLeft--
+				this.pomoStatus = 'stopped'
+				this.timeBreakLeft = this.timeBreak
+			} else {
+				this.timeSessionLeft--
+				this.sessionCount++
+				this.pomoStatus = 'breaked'
+				this.timeSessionLeft = this.timeSession
+			}
 			clearInterval(this.interval)
-			this.pomoStatus = 'stopped'
-			this.sessionCount++
-			//long break if count is something divided by number of sessions streak! Which can be nullified after period of time
+
+			//long break if count is something divided by number
+			// of sessions streak! Which can be nullified after period of time
+
+
 		}
 	}
 
