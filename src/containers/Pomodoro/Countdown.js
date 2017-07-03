@@ -1,8 +1,6 @@
-// @flow
-
 import React, {Component} from 'react'
-import {Text, View} from 'react-native'
-import {MyButton} from '../../components'
+import {Text, View, Alert} from 'react-native'
+import {MyButton, Confirm} from '../../components'
 import {observer, inject} from 'mobx-react'
 import {strings} from '../../config/strings'
 
@@ -38,14 +36,14 @@ const Countdown = inject('pomoStore')(
 		}
 		if (props.pomoStore.pomoStatus == 'paused' || props.pomoStore.pomoStatus == 'started') {
 			abortBtn = (
-				<MyButton onPress={() => props.pomoStore.changeStatus('abort')}>
+				<MyButton onPress={() => showAlert()}>
 					{strings.abort_session}
 				</MyButton>
 			)
 		} else {
 			abortBtn = null
 		}
-		if (props.pomoStore.pomoStatus == 'breaked') {
+		if (props.pomoStore.pomoStatus == 'completed') {
 			breakBtn = (
 				<MyButton onPress={() => props.pomoStore.changeStatus('break')}>
 					{strings.start_break}
@@ -54,7 +52,7 @@ const Countdown = inject('pomoStore')(
 		} else {
 			breakBtn = null
 		}
-		if (props.pomoStore.pomoStatus == 'completed') {
+		if (props.pomoStore.pomoStatus == 'breaked') {
 			skipBtn = (
 				<MyButton onPress={() => props.pomoStore.changeStatus('abort')}>
 					{strings.skip_break}
@@ -64,6 +62,17 @@ const Countdown = inject('pomoStore')(
 			skipBtn = null
 		}
 
+		const showAlert = () => {
+			Alert.alert(
+				'Are you sure?',
+				'This is bad thing',
+				[
+					{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+					{text: 'OK', onPress: () => props.pomoStore.changeStatus('abort')},
+				],
+				{ cancelable: true }
+			)
+		}
 
 		const displayTime = secs => {
 			// let h = Math.floor(secs / 3600)

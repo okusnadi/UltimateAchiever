@@ -20,7 +20,7 @@ export default class PomoStore {
 			case 'start':
 				clearInterval(this.interval)
 				this.timePauseLeft = this.timePause
-				timeBreakLeft = this.timeBreakLeft
+				this.timeBreakLeft = this.timeBreakLeft
 
 				this.pomoStatus = 'started'
 				this.interval = setInterval(() => {
@@ -52,7 +52,7 @@ export default class PomoStore {
 		}
 	}
 
-	@action count(secs) {
+	count(secs) {
 		if (secs > 1) {
 			if (this.pomoStatus == 'paused') {
 				this.timePauseLeft--
@@ -74,7 +74,7 @@ export default class PomoStore {
 			} else {
 				this.timeSessionLeft--
 				this.sessionCount++
-				this.pomoStatus = 'breaked'
+				this.pomoStatus = 'completed'
 				this.timeSessionLeft = this.timeSession
 			}
 			clearInterval(this.interval)
