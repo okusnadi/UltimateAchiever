@@ -1,33 +1,62 @@
-import React from 'react';
-import { Text, View, Modal } from 'react-native';
-import { CardSection } from './CardSection';
-import { MyButton } from './MyButton';
+import React from 'react'
+import {Text, View, Alert} from 'react-native'
+import {CardSection} from './CardSection'
+import {MyButton} from './MyButton'
+import {observer, inject} from 'mobx-react'
+import {strings} from '../config/strings'
 
-const Confirm = ({ children, visible, onAccept, onDecline }) => {
-	const { containerStyle, textStyle, cardSectionStyle } = styles;
+const Confirm = inject('pomoStore')(
+	observer(props => {
+		const {containerStyle, textStyle, cardSectionStyle} = styles
 
-	return (
-		<Modal
-			visible={visible}
-			transparent
-			animationType="slide"
-			onRequestClose={() => {}}
-		>
-			<View style={containerStyle}>
-				<CardSection style={cardSectionStyle}>
-					<Text style={textStyle}>
-						{children}
-					</Text>
-				</CardSection>
+		const fCommand = (x) => {
+			x
+		}
 
-				<CardSection>
-					<MyButton onPress={onAccept}>Yes</MyButton>
-					<MyButton onPress={onDecline}>No</MyButton>
-				</CardSection>
+		if(props.message == 'PomoBreak') {
+			console.log('Confirm PomoBreak')
+			accept = "props.pomoStore.changeStatus('break')"
+			decline = "props.pomoStore.changeStatus('abort')"
+			aTitle = 'Break started'
+			aDescr = 'Start your break or skip it and go for next session'
+		} else if (props.message == 'PomoAbort') {
+			console.log('Confirm PomoAbort')
+			accept = "props.pomoStore.changeStatus('abort')"
+			decline = "props.pomoStore.clickedType = 'none'"
+			aTitle = 'Break started'
+			aDescr = 'Start your break or skip it and go for next session'
+		}
+		//todo move stuff to strings
+		// todo handle outside click behaviour
+
+
+
+		return (
+
+			<View>
+				{Alert.alert(
+					aTitle,
+					aDescr,
+					[
+						{
+							text: strings.skip_break,
+							// onPress: () => props.pomoStore.changeStatus(fDecline),
+							onPress: () => eval(decline),
+							style: 'cancel'
+						},
+						{
+							text: strings.start_break,
+							// onPress: () => props.pomoStore.changeStatus(fAccept)
+							onPress: () => eval(accept)
+						}
+					],
+					{cancelable: true,
+					onDismiss: () => eval(decline)}
+				)}
 			</View>
-		</Modal>
-	);
-};
+		)
+	})
+)
 
 const styles = {
 	cardSectionStyle: {
@@ -45,6 +74,6 @@ const styles = {
 		flex: 1,
 		justifyContent: 'center'
 	}
-};
+}
 
-export { Confirm };
+export {Confirm}

@@ -15,6 +15,7 @@ export default class PomoScreen extends Component {
 	}
 
 	render() {
+		console.log('Render PomoScreen')
 		const { navigate } = this.props.navigation
 
 		// The screen's current route is passed in to `props.navigation.state`:
@@ -22,7 +23,7 @@ export default class PomoScreen extends Component {
 		return (
 			<View>
 				{/*<Header headerText={'Pomodoro'}/>*/}
-				<Countdown time={10} />
+				<Countdown/>
 				<Text>
 					{/*Chat with {params.user}*/}
 				</Text>

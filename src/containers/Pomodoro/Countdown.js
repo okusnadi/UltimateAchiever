@@ -1,11 +1,13 @@
 import React, {Component} from 'react'
-import {Text, View, Alert} from 'react-native'
+import {Text, View, Alert, Modal} from 'react-native'
 import {MyButton, Confirm} from '../../components'
 import {observer, inject} from 'mobx-react'
 import {strings} from '../../config/strings'
 
 const Countdown = inject('pomoStore')(
 	observer(props => {
+		myModal = null
+
 		if (props.pomoStore.pomoStatus == 'stopped') {
 			startBtn = (
 				<MyButton onPress={() => props.pomoStore.changeStatus('start')}>
@@ -36,7 +38,7 @@ const Countdown = inject('pomoStore')(
 		}
 		if (props.pomoStore.pomoStatus == 'paused' || props.pomoStore.pomoStatus == 'started') {
 			abortBtn = (
-				<MyButton onPress={() => showAlert()}>
+				<MyButton onPress={() => props.pomoStore.clickedType = 'aborting'}>
 					{strings.abort_session}
 				</MyButton>
 			)
@@ -72,6 +74,13 @@ const Countdown = inject('pomoStore')(
 				],
 				{ cancelable: true }
 			)
+			// myModal = (<Modal
+			// 	visible={true}
+			// 	transparent
+			// 	animationType="slide"
+			// 	onRequestClose={() => {}}
+			// >
+			// </Modal>)
 		}
 
 		const displayTime = secs => {
@@ -103,12 +112,22 @@ const Countdown = inject('pomoStore')(
 				<Text>
 					sessionCount: {props.pomoStore.sessionCount}
 				</Text>
+				<Text>
+					clickedType: {props.pomoStore.clickedType}
+				</Text>
 				{startBtn}
 				{pauseBtn}
 				{resumeBtn}
 				{abortBtn}
 				{breakBtn}
 				{skipBtn}
+				{myModal}
+				{props.pomoStore.pomoStatus == 'completed' ? <Confirm
+					message={'PomoBreak'}
+				>Are you sure???</Confirm> : null}
+				{props.pomoStore.clickedType == 'aborting' ? <Confirm
+					message={'PomoAbort'}
+				>Are you sure???</Confirm> : null}
 			</View>
 		)
 	})

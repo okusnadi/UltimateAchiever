@@ -14,6 +14,7 @@ export default class PomoStore {
 	@observable timeBreakLeft = this.timeBreak
 	@observable timeLBreak = 10
 	@observable sessionCount = 0
+	@observable clickedType = 'none'
 
 	@action	changeStatus(command) {
 		switch (command) {
@@ -26,6 +27,7 @@ export default class PomoStore {
 				this.interval = setInterval(() => {
 					this.count(this.timeSessionLeft)
 				}, 1000)
+				console.log('changeStatus start')
 				break
 			case 'break':
 				clearInterval(this.interval)
@@ -33,6 +35,7 @@ export default class PomoStore {
 				this.interval = setInterval(() => {
 					this.count(this.timeBreakLeft)
 				}, 1000)
+				console.log('changeStatus break')
 				break
 			case 'void':
 				this.sessionCount--
@@ -43,11 +46,14 @@ export default class PomoStore {
 				this.interval = setInterval(() => {
 					this.count(this.timePauseLeft)
 				}, 1000)
+				console.log('changeStatus pause')
 				break
 			case 'abort':
 				clearInterval(this.interval)
 				this.timeSessionLeft = this.timeSession
 				this.pomoStatus = 'stopped'
+				this.clickedType = 'none'
+				console.log('changeStatus abort')
 				break
 		}
 	}
