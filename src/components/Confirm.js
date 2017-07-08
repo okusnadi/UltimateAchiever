@@ -9,14 +9,10 @@ const Confirm = inject('pomoStore')(
 	observer(props => {
 		const {containerStyle, textStyle, cardSectionStyle} = styles
 
-		const fCommand = (x) => {
-			x
-		}
-
-		if(props.message == 'PomoBreak') {
+		if (props.message == 'PomoBreak') {
 			console.log('Confirm PomoBreak')
-			accept = "props.pomoStore.changeStatus('break')"
-			decline = "props.pomoStore.changeStatus('abort')"
+			accept = "props.pomoStore.changeStatus('abort')"
+			decline = "props.pomoStore.changeStatus('break')"
 			aTitle = 'Break started'
 			aDescr = 'Start your break or skip it and go for next session'
 		} else if (props.message == 'PomoAbort') {
@@ -26,13 +22,12 @@ const Confirm = inject('pomoStore')(
 			aTitle = 'Break started'
 			aDescr = 'Start your break or skip it and go for next session'
 		}
-		//todo move stuff to strings
-		// todo handle outside click behaviour
-
-
+		// todo move stuff to strings
+		// todo maybe not cancelable in some cases?
+		// todo remove either title or descr
+		// todo add void last session btn
 
 		return (
-
 			<View>
 				{Alert.alert(
 					aTitle,
@@ -50,8 +45,10 @@ const Confirm = inject('pomoStore')(
 							onPress: () => eval(accept)
 						}
 					],
-					{cancelable: true,
-					onDismiss: () => eval(decline)}
+					{
+						cancelable: false,
+						onDismiss: () => eval(decline)
+					}
 				)}
 			</View>
 		)
