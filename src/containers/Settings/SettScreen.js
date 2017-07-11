@@ -21,9 +21,9 @@ export default class SettScreen extends Component {
 			<View>
 				<Card>
 					<View style={{flexDirection: 'row' ,padding: 10}}>
-						<Text style={{flex: 0.66}}>PomoTimer</Text>
+						<Text style={{flex: 0.75}}>PomoTimer</Text>
 						<Picker
-							style={{flex: 0.33, height: 20}}
+							style={{flex: 0.25, height: 20}}
 							selectedValue={this.props.pomoStore.timeSession}
 							onValueChange={(itemValue, itemIndex) => this.props.pomoStore.setTimeSession('timeSession', itemValue)}>
 							<Picker.Item label="10" value="10" />
@@ -39,10 +39,12 @@ export default class SettScreen extends Component {
 							<Picker.Item label="60" value="60" />
 						</Picker>
 					</View>
+				</Card>
+				<Card>
 					<View style={{flexDirection: 'row' ,padding: 10}}>
-						<Text style={{flex: 0.66}}>PomoBreak</Text>
+						<Text style={{flex: 0.75}}>PomoBreak</Text>
 						<Picker
-							style={{flex: 0.33, height: 20}}
+							style={{flex: 0.25, height: 20}}
 							selectedValue={this.props.pomoStore.timeBreak}
 							onValueChange={(itemValue, itemIndex) => this.props.pomoStore.setTimeSession('timeBreak', itemValue)}>
 							<Picker.Item label="5" value="5" />
@@ -59,10 +61,12 @@ export default class SettScreen extends Component {
 							<Picker.Item label="60" value="60" />
 						</Picker>
 					</View>
+			</Card>
+				<Card>
 					<View style={{flexDirection: 'row' ,padding: 10}}>
-						<Text style={{flex: 0.66}}>PomoPause</Text>
+						<Text style={{flex: 0.75}}>PomoPause</Text>
 						<Picker
-							style={{flex: 0.33, height: 20}}
+							style={{flex: 0.25, height: 20}}
 							selectedValue={this.props.pomoStore.timePause}
 							onValueChange={(itemValue, itemIndex) => this.props.pomoStore.setTimeSession('timePause', itemValue)}>
 							<Picker.Item label="5" value="5" />

@@ -8,7 +8,7 @@ export default class PomoStore {
 		this.getTimeSession('timePause')
 		this.getTimeSession('timeBreak')
 	}
-
+	//todo in case will need to save entire state(if app crashes) use asyncStorage and json stringify and parse to save state as string
 	//todo test initial values
 	@observable timeSession
 	@observable timeSessionLeft = this.timeSession
