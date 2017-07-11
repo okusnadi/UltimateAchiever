@@ -6,7 +6,9 @@ import store from 'react-native-simple-store'
 
 export default class PomoStore {
 	constructor() {
-		this.getTimeSession()
+		this.getTimeSession('timeSession')
+		this.getTimeSession('timePause')
+		this.getTimeSession('timeBreak')
 	}
 
 	//todo test initial values
@@ -109,17 +111,16 @@ export default class PomoStore {
 		)
 		console.log('BananaPauseFin: ' + this.timePause)
 	}
-	@action
-	async setTimeSession(time) {
-		AsyncStorage.setItem('@pomoStore:timeSession', time)
-		this.getTimeSession()
+	@action	async setTimeSession(type, time) {
+		AsyncStorage.setItem('@pomoStore:'+type, time)
+		this.getTimeSession(type)
 	}
-
-	async getTimeSession() {
+	async getTimeSession(type) {
 		await AsyncStorage.getItem(
-			'@pomoStore:timeSession'
+			'@pomoStore:'+type
 		).then(value => {
-				this.timeSession = value
+				// eval('this.'+type) = value
+			this[type] = value
 		})
 	}
 	@action
