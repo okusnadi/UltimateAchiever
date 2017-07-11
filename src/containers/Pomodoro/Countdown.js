@@ -1,11 +1,14 @@
 import React, {Component} from 'react'
-import {Text, View, Alert, Modal} from 'react-native'
+import {Text, View, Alert, Modal, AsyncStorage} from 'react-native'
 import {MyButton, Confirm} from '../../components'
 import {observer, inject} from 'mobx-react'
 import {strings} from '../../config/strings'
 
+
 const Countdown = inject('pomoStore')(
 	observer(props => {
+
+
 		myModal = null
 
 		if (props.pomoStore.pomoStatus == 'stopped') {
@@ -93,7 +96,8 @@ const Countdown = inject('pomoStore')(
 		}
 		//todo hide counts depending
 		return (
-			<View>
+					<View>
+						{console.log('Return Countdown')}
 				<Text>
 					timeSession: {props.pomoStore.timeSession}
 				</Text>

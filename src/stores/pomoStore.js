@@ -1,28 +1,36 @@
-// @flow
-
 import {observable, action, computed} from 'mobx'
 import BackgroundTimer from 'react-native-background-timer'
+import {AsyncStorage} from 'react-native'
+import {persist} from 'mobx-persist'
+import store from 'react-native-simple-store'
 
 export default class PomoStore {
-	@observable timeSession = 10
+	constructor() {
+		this.getTimeSession()
+	}
+
+	//todo test initial values
+	@observable timeSession
 	@observable timeSessionLeft = this.timeSession
 	@observable pomoStatus = 'stopped'
 	// started, paused, stopped, done
 	@observable pauseAllowed = true
-	@observable timePause = 5
+	@observable	timePause
 	@observable timePauseLeft = this.timePause
-	@observable timeBreak = 5
+	@observable	timeBreak
 	@observable timeBreakLeft = this.timeBreak
 	@observable timeLBreak = 10
-	@observable sessionCount = 0
+	@observable	sessionCount = 0
 	@observable clickedType = 'none'
-
-	@action	changeStatus(command) {
+	//todo maybe convert some observables to computed?
+	@action
+	changeStatus(command) {
 		switch (command) {
 			case 'start':
 				BackgroundTimer.clearInterval(this.interval)
+				this.timeSessionLeft = this.timeSession
 				this.timePauseLeft = this.timePause
-				this.timeBreakLeft = this.timeBreakLeft
+				this.timeBreakLeft = this.timeBreak
 
 				this.pomoStatus = 'started'
 				this.interval = BackgroundTimer.setInterval(() => {
@@ -86,11 +94,37 @@ export default class PomoStore {
 			}
 			BackgroundTimer.clearInterval(this.interval)
 
-			//long break if count is something divided by number
+			//todo long break if count is something divided by number
 			// of sessions streak! Which can be nullified after period of time
-
-
 		}
+	}
+
+	@action setTimePause(time) {
+		store.update('pause', time)
+		console.log('BananaPause: ' + time)
+		this.timePause = store.get('pause').then((res) => {
+				console.log('BananaPause: ' + res)
+				return res
+		}
+		)
+		console.log('BananaPauseFin: ' + this.timePause)
+	}
+	@action
+	async setTimeSession(time) {
+		AsyncStorage.setItem('@pomoStore:timeSession', time)
+		this.getTimeSession()
+	}
+
+	async getTimeSession() {
+		await AsyncStorage.getItem(
+			'@pomoStore:timeSession'
+		).then(value => {
+				this.timeSession = value
+		})
+	}
+	@action
+	setTimeBreak(time) {
+		this.timeBreak = time
 	}
 
 	@observable firstName = 'Sen'
@@ -98,7 +132,8 @@ export default class PomoStore {
 	@observable email = 'send@appleseed.com'
 	@observable phone = '1155667788'
 
-	@action	data(data: Object) {
+	@action
+	data(data: Object) {
 		if (data.firstName) {
 			this.firstName = data.firstName
 		}
@@ -113,7 +148,8 @@ export default class PomoStore {
 		}
 	}
 
-	@computed get fullName(): string {
+	@computed
+	get fullName(): string {
 		return `${this.firstName} ${this.lastName}`
 	}
 

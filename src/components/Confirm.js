@@ -34,13 +34,13 @@ const Confirm = inject('pomoStore')(
 					aDescr,
 					[
 						{
-							text: strings.skip_break,
+							text: strings.start_break,
 							// onPress: () => props.pomoStore.changeStatus(fDecline),
 							onPress: () => eval(decline),
 							style: 'cancel'
 						},
 						{
-							text: strings.start_break,
+							text: strings.skip_break,
 							// onPress: () => props.pomoStore.changeStatus(fAccept)
 							onPress: () => eval(accept)
 						}
