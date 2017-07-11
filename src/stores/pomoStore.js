@@ -1,8 +1,6 @@
 import {observable, action, computed} from 'mobx'
 import BackgroundTimer from 'react-native-background-timer'
 import {AsyncStorage} from 'react-native'
-import {persist} from 'mobx-persist'
-import store from 'react-native-simple-store'
 
 export default class PomoStore {
 	constructor() {
@@ -33,7 +31,6 @@ export default class PomoStore {
 				this.timeSessionLeft = this.timeSession
 				this.timePauseLeft = this.timePause
 				this.timeBreakLeft = this.timeBreak
-
 				this.pomoStatus = 'started'
 				this.interval = BackgroundTimer.setInterval(() => {
 					this.count(this.timeSessionLeft)
@@ -101,54 +98,19 @@ export default class PomoStore {
 		}
 	}
 
-	@action setTimePause(time) {
-		store.update('pause', time)
-		console.log('BananaPause: ' + time)
-		this.timePause = store.get('pause').then((res) => {
-				console.log('BananaPause: ' + res)
-				return res
-		}
-		)
-		console.log('BananaPauseFin: ' + this.timePause)
-	}
 	@action	async setTimeSession(type, time) {
 		AsyncStorage.setItem('@pomoStore:'+type, time)
 		this.getTimeSession(type)
 	}
-	async getTimeSession(type) {
+	@action async getTimeSession(type) {
 		await AsyncStorage.getItem(
 			'@pomoStore:'+type
 		).then(value => {
-				// eval('this.'+type) = value
 			this[type] = value
 		})
 	}
-	@action
-	setTimeBreak(time) {
-		this.timeBreak = time
-	}
 
-	@observable firstName = 'Sen'
-	@observable lastName = 'Appleseed'
-	@observable email = 'send@appleseed.com'
-	@observable phone = '1155667788'
-
-	@action
-	data(data: Object) {
-		if (data.firstName) {
-			this.firstName = data.firstName
-		}
-		if (data.lastName) {
-			this.lastName = data.lastName
-		}
-		if (data.email) {
-			this.email = data.email
-		}
-		if (data.phone) {
-			this.phone = data.phone
-		}
-	}
-
+//todo delete this
 	@computed
 	get fullName(): string {
 		return `${this.firstName} ${this.lastName}`
@@ -159,5 +121,3 @@ export default class PomoStore {
 	// with @computed get decorators that are pure functions of other observable fields.
 	// <Text>FullName: {this.props.pomoStore.fullName}</Text>
 }
-
-// export default new Store();

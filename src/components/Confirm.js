@@ -1,7 +1,5 @@
 import React from 'react'
-import {Text, View, Alert} from 'react-native'
-import {CardSection} from './CardSection'
-import {MyButton} from './MyButton'
+import {View, Alert} from 'react-native'
 import {observer, inject} from 'mobx-react'
 import {strings} from '../config/strings'
 
@@ -35,13 +33,11 @@ const Confirm = inject('pomoStore')(
 					[
 						{
 							text: strings.start_break,
-							// onPress: () => props.pomoStore.changeStatus(fDecline),
 							onPress: () => eval(decline),
 							style: 'cancel'
 						},
 						{
 							text: strings.skip_break,
-							// onPress: () => props.pomoStore.changeStatus(fAccept)
 							onPress: () => eval(accept)
 						}
 					],

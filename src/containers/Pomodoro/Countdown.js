@@ -4,13 +4,8 @@ import {MyButton, Confirm} from '../../components'
 import {observer, inject} from 'mobx-react'
 import {strings} from '../../config/strings'
 
-
 const Countdown = inject('pomoStore')(
 	observer(props => {
-
-
-		myModal = null
-
 		if (props.pomoStore.pomoStatus == 'stopped') {
 			startBtn = (
 				<MyButton onPress={() => props.pomoStore.changeStatus('start')}>
@@ -67,25 +62,6 @@ const Countdown = inject('pomoStore')(
 			skipBtn = null
 		}
 
-		const showAlert = () => {
-			Alert.alert(
-				'Are you sure?',
-				'This is bad thing',
-				[
-					{text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-					{text: 'OK', onPress: () => props.pomoStore.changeStatus('abort')},
-				],
-				{ cancelable: true }
-			)
-			// myModal = (<Modal
-			// 	visible={true}
-			// 	transparent
-			// 	animationType="slide"
-			// 	onRequestClose={() => {}}
-			// >
-			// </Modal>)
-		}
-
 		const displayTime = secs => {
 			// let h = Math.floor(secs / 3600)
 			let m = Math.floor(secs / 60)
@@ -125,7 +101,6 @@ const Countdown = inject('pomoStore')(
 				{abortBtn}
 				{breakBtn}
 				{skipBtn}
-				{myModal}
 				{props.pomoStore.pomoStatus == 'completed' ? <Confirm
 					message={'PomoBreak'}
 				>Are you sure???</Confirm> : null}
