@@ -8,7 +8,7 @@ import ScheScreen from './containers/Scheduler/ScheScreen'
 import SettScreen from './containers/Settings/SettScreen'
 
 const stackNavigatorConfig = {
-	initialRouteName: 'Pomo',
+	initialRouteName: 'Sche',
 };
 
 export default StackNavigator({

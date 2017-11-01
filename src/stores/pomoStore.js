@@ -1,5 +1,5 @@
 import {observable, action, computed} from 'mobx'
-import BackgroundTimer from 'react-native-background-timer'
+// import BackgroundTimer from 'react-native-background-timer'
 import {AsyncStorage} from 'react-native'
 
 export default class PomoStore {
@@ -27,37 +27,37 @@ export default class PomoStore {
 	changeStatus(command) {
 		switch (command) {
 			case 'start':
-				BackgroundTimer.clearInterval(this.interval)
+				// BackgroundTimer.clearInterval(this.interval)
 				this.timeSessionLeft = this.timeSession
 				this.timePauseLeft = this.timePause
 				this.timeBreakLeft = this.timeBreak
 				this.pomoStatus = 'started'
-				this.interval = BackgroundTimer.setInterval(() => {
-					this.count(this.timeSessionLeft)
-				}, 1000)
+				// this.interval = BackgroundTimer.setInterval(() => {
+				// 	this.count(this.timeSessionLeft)
+				// }, 1000)
 				console.log('changeStatus start')
 				break
 			case 'break':
-				BackgroundTimer.clearInterval(this.interval)
+				// BackgroundTimer.clearInterval(this.interval)
 				this.pomoStatus = 'breaked'
-				this.interval = BackgroundTimer.setInterval(() => {
-					this.count(this.timeBreakLeft)
-				}, 1000)
+				// this.interval = BackgroundTimer.setInterval(() => {
+				// 	this.count(this.timeBreakLeft)
+				// }, 1000)
 				console.log('changeStatus break')
 				break
 			case 'void':
 				this.sessionCount--
 				break
 			case 'pause':
-				BackgroundTimer.clearInterval(this.interval)
+				// BackgroundTimer.clearInterval(this.interval)
 				this.pomoStatus = 'paused'
-				this.interval = BackgroundTimer.setInterval(() => {
-					this.count(this.timePauseLeft)
-				}, 1000)
+				// this.interval = BackgroundTimer.setInterval(() => {
+				// 	this.count(this.timePauseLeft)
+				// }, 1000)
 				console.log('changeStatus pause')
 				break
 			case 'abort':
-				BackgroundTimer.clearInterval(this.interval)
+				// BackgroundTimer.clearInterval(this.interval)
 				this.timeSessionLeft = this.timeSession
 				this.pomoStatus = 'stopped'
 				this.clickedType = 'none'
@@ -91,7 +91,7 @@ export default class PomoStore {
 				this.pomoStatus = 'completed'
 				this.timeSessionLeft = this.timeSession
 			}
-			BackgroundTimer.clearInterval(this.interval)
+			// BackgroundTimer.clearInterval(this.interval)
 
 			//todo long break if count is something divided by number
 			// of sessions streak! Which can be nullified after period of time

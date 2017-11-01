@@ -44,8 +44,6 @@ Additional features will include:
 
 [React Navigation](https://reactnavigation.org/) as app core navigation
 
-[React Native Background Timer](https://github.com/ocetnik/react-native-background-timer) to allow app work in background
-
 [React Native Localization](https://github.com/stefalda/ReactNativeLocalization) for localization support
 
 # Concept mockups
