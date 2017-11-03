@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Button, Text, View, Picker} from 'react-native'
 import {observer, inject} from 'mobx-react'
-import {Card} from '../../components'
+import {Card} from '../../common/index'
 
 @inject('pomoStore')
 @observer

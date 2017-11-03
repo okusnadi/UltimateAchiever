@@ -2,10 +2,10 @@
 
 import {StackNavigator} from 'react-navigation';
 
-import PomoScreen from './containers/Pomodoro/PomoScreen'
-import HomeScreen from './containers/Home/HomeScreen'
-import ScheScreen from './containers/Scheduler/ScheScreen'
-import SettScreen from './containers/Settings/SettScreen'
+import PomoScreen from '../screens/Pomodoro/PomoScreen'
+import HomeScreen from '../screens/Home/HomeScreen'
+import ScheScreen from '../screens/Scheduler/ScheScreen'
+import SettScreen from '../screens/Settings/SettScreen'
 
 const stackNavigatorConfig = {
 	initialRouteName: 'Sche',

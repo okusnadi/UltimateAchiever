@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {Text, View, Alert, Modal, AsyncStorage} from 'react-native'
-import {MyButton, Confirm} from '../../components'
+import {MyButton, Confirm} from '../../common/index'
 import {observer, inject} from 'mobx-react'
-import {strings} from '../../config/strings'
+import {strings} from '../../values/strings'
 
 const Countdown = inject('pomoStore')(
 	observer(props => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Alert} from 'react-native'
 import {observer, inject} from 'mobx-react'
-import {strings} from '../config/strings'
+import {strings} from '../values/strings'
 
 const Confirm = inject('pomoStore')(
 	observer(props => {
